@@ -1,5 +1,6 @@
 name: Deploy
 on:
+  workflow_dispatch:
   push:
     branch:
       - main
@@ -18,10 +19,10 @@ jobs:
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          port: ${{ secrets.PORT }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          host: ${{ secrets.SECRETS_HOST }}
+          port: ${{ secrets.SECRETS_PORT }}
+          username: ${{ secrets.SECRETS_USERNAME }}
+          password: ${{ secrets.SECRETS_PASSWORD }}
           script: |
             cd /opt/cxs/md
             git pull origin main
