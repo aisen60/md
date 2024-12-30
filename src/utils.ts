@@ -1,14 +1,18 @@
-import { zlibSync, unzlibSync, strToU8, strFromU8 } from "fflate";
+import { strFromU8, strToU8, unzlibSync, zlibSync } from "fflate";
 
-import { saveAs } from "file-saver";
+export function debounce<T extends (...args: any[]) => void>(
+  func: T,
+  delay: number
+): (...args: Parameters<T>) => void {
+  let timer: ReturnType<typeof setTimeout> | null = null;
 
-export function debounce(fn: Function, n = 100) {
-  let handle: any;
-  return (...args: any[]) => {
-    if (handle) clearTimeout(handle);
-    handle = setTimeout(() => {
-      fn(...args);
-    }, n);
+  return (...args: Parameters<T>): void => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      func(...args);
+    }, delay);
   };
 }
 
@@ -34,9 +38,6 @@ export function atou(base64: string): string {
   return decodeURIComponent(escape(binary));
 }
 
-export function downloadFile(value: string, name = "README.md") {
-  const blob = new Blob([value], {
-    type: "text/markdown",
-  });
-  saveAs(blob, name);
+export function copyToClipboard(text: string) {
+  navigator.clipboard.writeText(text);
 }

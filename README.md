@@ -1,3 +1,3 @@
 # md
 
-一个的 md 编辑器，see: https://md-beta.vercel.app
+一个基于 [ByteMD](https://github.com/bytedance/bytemd) 的在线 markdown 编辑器。
