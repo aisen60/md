@@ -100,42 +100,6 @@ function uploadImagesSequentially(files: File[]) {
     .then(() => [completedResult, failedResult]);
 }
 
-function uploadToast(type: string, failedImgs?: SettledImg[]) {
-  if (type === "1") {
-    return toast.error("选择的文件中没有图片");
-  }
-
-  if (type === "2") {
-    return toast.error("最多只能选择 10 个图片");
-  }
-
-  if (type === "3") {
-    return toast.loading("图片上传中");
-  }
-
-  if (type === "4") {
-    return toast.error("图片上传失败，请重新上传");
-  }
-
-  if (type === "5" && failedImgs) {
-    let message = `以下图片上传失败，请重新上传：`;
-    failedImgs.forEach((item) => (message += `\n${item.fileName} 上传失败`));
-
-    toast.success("部分图片上传完成");
-
-    toast.error(message, {
-      duration: 5000,
-      style: {
-        borderRadius: "0px",
-      },
-    });
-  }
-
-  if (type === "6") {
-    return toast.success("图片上传成功");
-  }
-}
-
 export function uploadImagesHelper(fileList: File[]) {
   const imgMimeTypes = [
     "image/jpeg",
@@ -149,16 +113,18 @@ export function uploadImagesHelper(fileList: File[]) {
   const files = fileList.filter((file) => imgMimeTypes.includes(file.type));
 
   if (files.length === 0) {
-    uploadToast("1");
-    return Promise.reject();
+    const message = "选择的文件中没有图片";
+    toast.error(message);
+    return Promise.reject(message);
   }
 
   if (files.length > 10) {
-    uploadToast("2");
-    return Promise.reject();
+    const message = "最多只能选择 10 个图片";
+    toast.error(message);
+    return Promise.reject(message);
   }
 
-  const toastLoadingId = uploadToast("3");
+  const toastLoadingId = toast.loading("图片上传中");
 
   return uploadImagesSequentially(files).then(
     ([completedResult, failedResult]) => {
@@ -172,13 +138,26 @@ export function uploadImagesHelper(fileList: File[]) {
       };
 
       if (completedResult.length === 0) {
-        uploadToast("4");
-        return Promise.reject();
+        const message = "图片上传失败，请重新上传";
+        toast.error(message);
+        return Promise.reject(message);
       } else if (completedResult.length > 0 && failedResult.length > 0) {
-        uploadToast("5", failedResult);
+        let message = `以下图片上传失败，请重新上传：`;
+        completedResult.forEach(
+          (item) => (message += `\n${item.fileName} 上传失败`)
+        );
+
+        toast.success("部分图片上传完成");
+
+        toast.error(message, {
+          duration: 5000,
+          style: {
+            borderRadius: "0px",
+          },
+        });
         return renderImgs();
       } else {
-        uploadToast("6");
+        toast.success("图片上传成功");
         return renderImgs();
       }
     }

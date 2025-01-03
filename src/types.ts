@@ -4,16 +4,23 @@ export type AppData = {
   data: string;
 };
 
-export type BaseProps = {
+export type AppColorMode = "light" | "dark";
+
+type BaseProps = {
   title: string;
   content: string;
 };
 
 export type HeaderProps = BaseProps & {
   onTitleChange: (value: string) => void;
-};
+} & ThemeProps;
 
 export type DownloadProps = BaseProps;
+
+export type ThemeProps = {
+  colorMode: AppColorMode;
+  onThemeChange: () => void;
+};
 
 export type MainProps = {
   content: string;

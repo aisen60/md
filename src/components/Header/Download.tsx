@@ -16,7 +16,7 @@ const Download: React.FC<DownloadProps> = (props) => {
   };
 
   return (
-    <button title="下载文件" onClick={onDownload}>
+    <button title="下载文件" className="download-btn" onClick={onDownload}>
       <svg width="1.7em" height="1.7em" viewBox="0 0 24 24" fill="currentColor">
         <g>
           <rect x="4" y="18" width="16" height="2" rx="1" ry="1" />
