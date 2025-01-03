@@ -43,6 +43,6 @@ body {
 .md-toast {
   font-size: 14px;
   border-radius: 20px;
-  background-color: var(--md-toast-bg);
-  color: var(--md-toast-color);
+  background-color: var(--md-toast-bg) !important;
+  color: var(--md-toast-color) !important;
 }
