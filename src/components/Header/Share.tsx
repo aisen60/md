@@ -9,7 +9,7 @@ const Share: React.FC = () => {
   };
 
   return (
-    <button title="复制分享链接" onClick={copyLink}>
+    <button title="复制分享链接" className="share-btn" onClick={copyLink}>
       <svg width="1.4em" height="1.4em" viewBox="0 0 24 24">
         <g
           fill="none"

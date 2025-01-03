@@ -1,0 +1,48 @@
+@use "./nav.scss";
+@use "./main/index.scss";
+
+:root {
+  --md-bg-color-1: #fff;
+  --md-text-color-1: #171717;
+
+  // nav
+  --md-nav-btn-color: #666;
+  --md-nav-btn-color-highlight: #333;
+
+  // toast
+  --md-toast-bg: var(--md-bg-color-1);
+  --md-toast-color: #171717;
+}
+
+.dark-theme {
+  color-scheme: dark;
+
+  --md-bg-color-1: #0d1117;
+  --md-text-color-1: #aaaaaa;
+  --md-text-color-2: #666666;
+
+  // nav
+  --md-nav-btn-color-highlight: #ededed;
+
+  // toast
+  --md-toast-bg: #333;
+  --md-toast-color: #fff;
+
+  // main
+  --md-border-color: #333333;
+  --md-dropdown-fill: rgba(165, 165, 165, 0.1);
+
+  --md-primary: #569cd6;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.md-toast {
+  font-size: 14px;
+  border-radius: 20px;
+  background-color: var(--md-toast-bg);
+  color: var(--md-toast-color);
+}

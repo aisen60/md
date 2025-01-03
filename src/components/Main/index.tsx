@@ -11,11 +11,6 @@ import gfmLocales from "@bytemd/plugin-gfm/locales/zh_Hans.json";
 import mathLocales from "@bytemd/plugin-math/locales/zh_Hans.json";
 import mermaidLocales from "@bytemd/plugin-mermaid/locales/zh_Hans.json";
 
-import "bytemd/dist/index.css";
-import "highlight.js/styles/vs.css";
-import "katex/dist/katex.css";
-import "github-markdown-css/github-markdown-light.css";
-
 import { debounce } from "@/utils";
 import { uploadImagesHelper } from "./uploadHelper";
 import codeCopyPlugin from "./codeCopyPlugin";
