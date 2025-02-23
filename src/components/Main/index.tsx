@@ -12,7 +12,7 @@ import mathLocales from "@bytemd/plugin-math/locales/zh_Hans.json";
 import mermaidLocales from "@bytemd/plugin-mermaid/locales/zh_Hans.json";
 
 import { debounce } from "@/utils";
-import { uploadImagesHelper } from "./uploadHelper";
+// import { uploadImagesHelper } from "./uploadHelper";
 import codeCopyPlugin from "./codeCopyPlugin";
 
 import type { MainProps } from "@/types";
@@ -38,9 +38,9 @@ const PLUGINS = [
 const Main = (props: MainProps) => {
   const { content, onContentChange } = props;
 
-  const onUploadImages = (fileList: File[]) => {
-    return uploadImagesHelper(fileList);
-  };
+  // const onUploadImages = (fileList: File[]) => {
+  //   return uploadImagesHelper(fileList);
+  // };
 
   const onChange = debounce((value: string) => {
     onContentChange(value);
@@ -52,7 +52,7 @@ const Main = (props: MainProps) => {
       mode="auto"
       plugins={PLUGINS}
       locale={mdLocales}
-      uploadImages={onUploadImages}
+      // uploadImages={onUploadImages}
       onChange={onChange}
       editorConfig={{
         lineNumbers: true,
